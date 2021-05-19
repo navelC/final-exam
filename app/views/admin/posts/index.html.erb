@@ -1,0 +1,127 @@
+<style type="text/css">
+    .badge {
+        cursor: pointer;
+    }
+    img{
+        cursor: pointer;
+    }
+</style>
+<div class="content-wrapper" style="min-height: 1203.6px;">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Danh sách Bài đăng</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Danh sách Bài đăng</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="col-12">
+            <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6"></div>
+                            <div class="col-sm-12 col-md-6"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">id</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tiêu đề bài đăng</th>
+                                            <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Trạng thái</th>
+                                            <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Xoá</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody id="product">
+                                        <% @posts.each do |post|%>
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1"><%=post.id%></td>
+                                                <td><a href="../../../../posts/<%=post.id%>" target="_blank"><%=post.title%></a></td>
+                                                <td style="text-align: center;">
+                                                    <% if post.status == "chưa duyệt"
+                                                            clas = "bg-warning"
+                                                        elsif post.status == "đã duyệt"
+                                                            clas = "bg-primary"
+                                                        else
+                                                            clas = "bg-danger"
+                                                        end
+                                                    %>
+                                                    <span class="badge <%= clas%>" data-id="<%=post.id%>" id="permiss">
+                                                        <%=post.status%>
+                                                    </span>
+                                                </td>
+                                                <td  style="text-align: center;"> <%= image_tag('cancel.png', style: "width: 30px; height: 30px", id: 'del', data_id: post.id) %></td>
+                                            </tr>
+                                        <% end -%>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click','#permiss',function(){
+        var id = $(this).attr('data-id');
+        var status = $(this).text();
+        status = status.replace(/\s+/g,' ');
+        if(status.split(" ").length-1 > 1 ){
+            status = status.substring(0, status.length-1);
+            status = status.substring(1);
+        }
+        var clas;
+        switch(status){
+            case"chưa duyệt":
+                status = "đã duyệt";
+                clas = "badge bg-primary";
+            break;
+            case"đã duyệt":
+                status = "từ chối";
+                clas = "badge bg-danger";
+            break;
+            case"từ chối":
+                status = "đã duyệt";
+                clas = "badge bg-primary";
+            break;
+        }
+        $(this).text(status);
+        $(this).attr("class", clas);
+        $.ajax({
+            url: '../../Ajax?controller=permissnews&id='+id,
+            method:"GET",
+            success:function(result){
+            }
+        });
+    });
+    $(document).on('click','#del',function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '?controller=delproduct',
+            method:"POST",
+            cache: false,
+            data:{id:id},
+            success:function(data){
+                $(this).closest('tr').remove();
+            }
+        });
+    });
+</script>

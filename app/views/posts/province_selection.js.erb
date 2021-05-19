@@ -1,0 +1,1 @@
+$('#post_district_id').html(`<%= select_tag :post_district, options_for_select(@districts.collect{ |d| [d.name , d.id]})%>`);

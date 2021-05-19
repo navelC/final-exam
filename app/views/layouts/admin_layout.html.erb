@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'ionicons.min'%>
+    <%= stylesheet_link_tag 'tempusdominus-bootstrap-4.min'%>
+    <%= stylesheet_link_tag 'jqvmap.min'%>
+    <%= stylesheet_link_tag 'adminlte.min'%>
+    <%= stylesheet_link_tag 'icheck-bootstrap.min'%>
+    <%= stylesheet_link_tag 'OverlayScrollbars.min'%>
+    <%= stylesheet_link_tag 'daterangepicker'%>
+    <%= stylesheet_link_tag 'summernote-bs4'%>
+    <%= stylesheet_link_tag 'font'%>
+    <%= javascript_pack_tag 'adminlte' %>
+    
+  </head>
+  <body>
+    <%=render "admin/layouts/header"%>
+    <section class="content" style="min-height: auto;">
+      <% flash.each do |key, value| %>
+        <div class="row">
+          <div class="alert alert-<%= key %>">
+            <%= value %>
+          </div>
+        </div>
+      <% end %>
+    </section>
+    <%= yield %>
+    <%=render "admin/layouts/footer"%>
+  </body>
+</html>

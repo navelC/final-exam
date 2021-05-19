@@ -1,0 +1,24 @@
+<div class="inner">
+	<div class="title">
+		<h2>Tin mới nhất</h2>
+	</div>
+	<% if posts.present? %>
+		<div class="list-item">
+			<% posts.each do |post| %>
+				<div class="item">
+					<a href="posts/<%=post.id%>">
+						<%= image_tag url_for(post.image),:class => "img-left" %>
+					</a>
+					<div class="item-in4">
+						<a href="posts/<%=post.id%>"><h3><%= post.title %></h3></a>
+						<p class="price"><%= post.price %>đ/ngày</p>
+						<p class="location"><%= post.address %></p>
+					</div>
+				</div>	
+			<% end %>
+		</div>
+	<% else %>
+	<p style='margin-top:20px;'>Không có bài đăng nào.<p>
+	<% end %>
+</div>
+

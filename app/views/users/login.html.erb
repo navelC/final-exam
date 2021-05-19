@@ -1,0 +1,51 @@
+<<<<<<< HEAD
+<%= stylesheet_link_tag 'style1'%>
+=======
+>>>>>>> upstream/master
+<section class="sign-in">
+	<div class="container">
+		<div class="signin-content">
+			<div class="signin-image">
+				<figure><%= image_tag("signup-image.jpg")%></figure>
+				<%= link_to "Đăng ký tài khoản", new_user_path %>
+			</div>
+			<div class="signin-form">
+				<h2 class="form-title">Đăng nhập</h2>
+				<%= form_tag({},{:class => 'register-form',:name => "login", :onsubmit => "return checkLogin();"}) do %>
+				<div class="form-group">
+					<label class="lb" for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+					<%= text_field_tag :account,"",id:"pass",placeholder:"Tên đăng nhập"%>
+				</div>
+				<div class="form-group">
+					<label class="lb" for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+					<%= password_field_tag :password,"",id:"pass",placeholder:"Mật khẩu"%>
+				</div>
+				<div class="form-group">
+					<input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+					<label for="remember-me" class="label-agree-term"><span><span></span></span>Ghi nhớ đăng nhập</label>
+				</div>
+				<div class="form-group">
+					<a href="?controller=misspass">Quên mật khẩu</a>
+				</div>
+				<div class="form-group form-button">
+					<%= submit_tag "Đăng nhập",class:"form-submit" %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>
+<script type="text/javascript">
+	function checkLogin(){
+		var x = document.forms["login"]['account'].value;
+		var y = document.forms["login"]['password'].value;
+		if (x == "") {
+			alert("Bạn chưa nhập tên đăng nhập");
+			return false;
+		}
+		else if (y == "") {
+			alert("Bạn chưa nhập mật khẩu");
+			return false;
+		}
+	}
+</script>

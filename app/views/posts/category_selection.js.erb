@@ -1,0 +1,1 @@
+$('#post_brand_id').html(`<%= select_tag :brand_id, options_for_select(@brands.collect{ |b| [b.name , b.id]})%>`);

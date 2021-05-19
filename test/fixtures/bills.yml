@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  user: one
+  post: one
+  rent_date: 2021-04-28 22:18:46
+  return_date: 2021-04-28 22:18:46
+
+two:
+  amount: 1
+  user: two
+  post: two
+  rent_date: 2021-04-28 22:18:46
+  return_date: 2021-04-28 22:18:46

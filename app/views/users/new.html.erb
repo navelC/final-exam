@@ -1,0 +1,23 @@
+<<<<<<< HEAD
+ <%= stylesheet_link_tag 'style1'%>
+
+=======
+>>>>>>> upstream/master
+<div class="main">
+	<section class="signup">
+		<div class="container">
+			<div class="signup-content">
+				<div class="signup-form">
+					<h2 class="form-title">Đăng ký tài khoản</h2>
+					<%= render 'form', user: @user %>
+				</div>
+				<div class="signup-image"> 
+					<figure><%= image_tag("signup-image.jpg")%></figure>
+					<%= link_to "Tôi đã có tài khoản", user_login_path %>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+

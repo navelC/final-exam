@@ -1,0 +1,258 @@
+<style type="text/css">
+    .info{
+        margin-top: 30px;
+    }
+    table td, table th{
+        text-align: center;
+        border: 1px solid;
+        padding: 10px;
+    }
+    .actived{
+        background-color: grey;
+    }
+    .avatar{
+        width: 80px;
+        height: 80px;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 5px;
+    }
+<<<<<<< HEAD
+    .wrapp{
+        padding: 10px;
+    }
+=======
+>>>>>>> upstream/master
+    #option td{
+        cursor: pointer;
+    }
+    .imgid{
+        border: 1px solid black;
+    }
+    .imgid input{
+        display: none;
+    }
+    .id{
+        width: 100px;
+        height: 100px;
+    }
+    .submit{
+        margin-top: 30px;
+        padding: 5px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 20px;
+        width: 200px;
+    }
+    table{
+        border-collapse: collapse;
+        text-align: center;
+    }
+    textarea{
+        width: 100%;
+        height: 100px;
+    }
+<<<<<<< HEAD
+    h3{
+        margin-top: 10px;
+    }
+    .title{
+        padding: 0 0 2px;
+        line-height: 22px;
+        font-size: 18px;
+        margin: 0px;
+    }
+    .box-area{
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #DFE3ED;
+    }
+=======
+>>>>>>> upstream/master
+</style>
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 50px; margin-left: 30px;margin-bottom: 30px">
+<<<<<<< HEAD
+            <div class="col-2 info bg-black" >
+=======
+            <div class="col-2 info" >
+>>>>>>> upstream/master
+                <img class="avatar" src="Public/client/img/<?= $user['avatar'] ?>">
+                <hr>
+                <table id="option">
+                    <tr><td id="infor"class="actived" onclick="change(this.id);">Thông tin cá nhân</td></tr>
+                    <% if current_user.id == Integer(params[:id]) %>
+                    <tr><td id="wallet" onclick="change(this.id)">Ví cân nhân</td></tr>
+                    <tr><td id="history" onclick="change(this.id);">Lịch sử giao dịch</td></tr>
+                    <tr><td id="manage"  onclick="change(this.id);">Quản Lí tin</td></tr>
+                    <% end %>
+                </table>
+            </div>
+            <div class="col-1"></div>
+<<<<<<< HEAD
+            <div class="col-8 bg-black " >
+                <div class="wrapp" id="in4">
+                 <%= render 'infor', user: @user%>
+                </div>
+=======
+            <div class="col-8" id="in4">
+                <%= render 'infor'%>
+>>>>>>> upstream/master
+            </div>
+        </div>
+    </div>
+</body>
+<% if current_user.id == Integer(params[:id]) %>
+<script type="text/javascript">
+    function change(id) {
+        var x = document.getElementById(id);
+        var y = document.getElementById('in4');
+        $('.actived').toggleClass('actived');
+        switch(id){
+<<<<<<< HEAD
+            case'wallet': y.innerHTML = `  <%= render 'wallet' , user: @user%>`;
+            break;
+            case'manage': y.innerHTML = `  <%= render 'manage' , posts: @post_accepted%>`;
+            break;
+            case'infor': y.innerHTML = `  <%= render 'infor', user: @user%>`;
+=======
+            case'wallet': y.innerHTML = `  <%= render 'wallet'%>`;
+            break;
+            case'manage': y.innerHTML = `  <%= render 'manage' , posts: Post.where(user_id: current_user.id)%>`;
+            break;
+            case'infor': y.innerHTML = `  <%= render 'infor'%>`;
+>>>>>>> upstream/master
+            break;
+            case'history': y.innerHTML = `  <%= render 'history'%>`;
+            break;
+        }
+        x.className = "actived";
+
+    }
+<<<<<<< HEAD
+    function changeManage(id) {
+        var x = document.getElementById(id);
+        var y = document.getElementById('managerental');
+        $('.active').toggleClass('active');
+        switch(id){
+            case'refused': y.innerHTML = `  <%= render 'posts', posts: @post_refused%>`;
+            break;
+            case'accepted': y.innerHTML = `  <%= render 'posts' , posts: @post_accepted%>`;
+            break;
+            case'pending': y.innerHTML = `  <%= render 'posts', posts: @post_pending%>`;
+            break;
+            default:
+            break;
+        }
+        x.className = "item active";
+
+    }
+=======
+>>>>>>> upstream/master
+    function topUp(id){
+        var x = document.getElementById(id);
+        var y = document.getElementById('topup');
+        $('.active').toggleClass('active');
+        if(id == 'bank')
+<<<<<<< HEAD
+            y.innerHTML = `<p>Chuyển tiền vào số tài khoản: 0861000086082</p><p>ngân hàng: vietcombank</p><p>tên người thụ hưởng: Lê Minh Hiệp
+</p><p>nội dung chuyển khoản: "Nạp tiền vào tài khoản - tên đăng nhập - số tiền"</p><p>Phí quy đổi: 0%</p>`;
+=======
+            y.innerHTML = `<p>Chuyển tiền vào số tài khoản: 42831001234566789</p><p>ngân hàng: vietcombank</p><p>tên người thụ hưởng: Nguyễn Nhật Phi</p><p>nội dung chuyển khoản: "Nạp tiền vào tài khoản - tên đăng nhập - số tiền"</p><p>Phí quy đổi: 0%</p>`;
+>>>>>>> upstream/master
+        else change('wallet');
+        x.className = "active";
+    }
+</script>
+<script type="text/javascript">
+    function receive(id){
+        var iduser = $('#iduser'+id).val();
+        var iduser2 = <?php echo $_SESSION['user']['id'] ?>;
+        var total_date = $('.total_date'+id).text();
+        var price =  $('#price'+id).val();
+        var total_price = price*total_date;
+        if(confirm("Bạn có chắc là bạn đã nhận xe ?"))
+            changestatus(id,"Đã nhận xe","",iduser,total_price,iduser2);
+    }
+    function cancel(id) {
+        var iduser = $('#iduser'+id).val();
+        var rent_date = $('.rent_date'+id).text();
+        var total_date = $('.total_date'+id).text();
+        var price =  $('#price'+id).val();
+        var total_price = price*total_date;
+        var message = 'Bạn đã chọn thuê xe vào ngày ' + rent_date+'  với đơn giá '+price+'vnđ/ngày, số ngày thuê '+total_date+
+        ' ngày. Sau khi hủy tiền sẽ được trả về tài khoản tuy nhiên bạn sẽ chịu'+
+        ' 10% chi phí để hủy đơn đặt xe này. Hãy điền lý do vì sao hủy đặt xe:'+
+        '<textarea id="reason"></textarea>'+
+        '<input type="hidden" id="iduser" value="'+iduser+'">'+
+        '<input type="hidden" id="total_price" value="'+total_price+'">'+
+        '<input type="hidden" id="id" value="'+id+'">';
+        $(".modal-body").html(message);
+        $('#cancelorder').modal('show');
+    }
+    $(document).on("click", "#cancel", function () {
+        var reason = $('#reason').val();
+        var id = $('#id').val();
+        var iduser = $('#iduser').val();
+        var iduser2 = <?php echo $_SESSION['user']['id'] ?>;
+        var total_price = $('#total_price').val();
+        if(confirm("Bạn có chắc là bạn muốn huỷ đặt xe này?")){
+            changestatus(id,"Đã huỷ xe",reason,iduser,total_price,iduser2);
+            $('#cancelorder').modal('hide');
+        }
+    });
+    function changestatus(id,status,reason,iduser,total_price,iduser2){
+        $.post("Ajax/?controller=order", {id:id, status:status, reason:reason, iduser:iduser, total_price:total_price, iduser2:iduser2}, function(result){
+            $('#status_'+id).html(result);
+        });
+    }
+    function manageRental(id){
+        $.post("Ajax/?controller=manage", {id:id}, function(result){
+            $('#managerental').html(result);
+        });
+    }
+    function permiss(id){
+        $('#idbill').attr('value',id);
+        $('#confirm').modal('show');
+    }
+    function agree(){
+        var idbill = $('#idbill').val();
+        if(confirm("Bạn có chắc là muốn cho người này thuê?")){
+            $.post("Ajax/?controller=permissrent", {idbill:idbill,condition:'cho thuê'}, function(result){
+                $('#condition'+idbill).attr('src','Public/client/img/'+result);
+                $('#condition'+idbill).removeAttr('onclick');
+                $('#condition'+idbill).css('cursor','auto');
+                $('#confirm').modal('hide');
+            });
+         }
+    }
+<<<<<<< HEAD
+    function dismiss(){
+=======
+     function dismiss(){
+>>>>>>> upstream/master
+        var idbill = $('#idbill').val();
+        if(confirm("Bạn có chắc là không muốn cho người này thuê?")){
+            $.post("Ajax/?controller=permissrent", {idbill:idbill,condition:'không cho thuê'}, function(result){
+                $('#condition'+idbill).attr('src','Public/client/img/'+result);
+                $('#condition'+idbill).removeAttr('onclick');
+                $('#condition'+idbill).css('cursor','auto');
+                $('#confirm').modal('hide');
+            });
+        }
+    }
+<<<<<<< HEAD
+    function purchase() {
+        var id = $('#post_province').val();
+        $.get("/posts/ajax/province_selection", {id:id}, function(result){
+        });
+    }
+=======
+>>>>>>> upstream/master
+</script>
+ <% end -%>

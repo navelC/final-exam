@@ -1,0 +1,216 @@
+<style type="text/css">
+  select{
+   margin-right: 20px;
+   padding: 5px;
+   width: 100%;
+  }
+<<<<<<< HEAD
+  .group > .group{
+    margin-bottom: 0px;
+  }
+  .group  > label{
+    font-weight: bold;
+    color: #3C3241;
+    margin-bottom: 5px;
+  }
+  .group > span{
+    color: red;
+  }
+  input[type=submit]{
+    padding: 8px 20px !important;
+=======
+  .group{
+    margin-bottom: 20px;
+  }
+  input[type=submit]{
+    width: 50%;
+>>>>>>> upstream/master
+  }
+  select{
+    margin-right: 20px;
+  }
+  .group{
+    width: 100%;
+<<<<<<< HEAD
+    margin-bottom: 20px;
+  }
+  .center{
+    text-align: center;
+  }
+  input{
+    padding: 6px !important;
+  }
+</style>
+<div class="post-form-area  bg-black">
+<%= form_with(model: post,enctype:"multipart/form-data",class:"post-form") do |form| %>
+=======
+  }
+</style>
+<%= form_with(model: post,enctype:"multipart/form-data") do |form| %>
+>>>>>>> upstream/master
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<<<<<<< HEAD
+    <div class="row ">
+      <div class="group" >
+          <div class="group"><%= form.label :'Thông tin xe' %>(<span>*</span>)</div>
+        <div class="row">
+          <div class="col-3">
+          <%= form.label :'loại xe'%>
+          <%=  select_tag  :post_category, options_for_select(Category.all.collect{ |c| [c.name , c.id]}, :selected => @category_id), :onchange => 'categoryOption()'%>
+          </div>
+          <div class="col-3">
+          <%= form.label :'hãng xe' %>
+          <%= form.select :brand_id, options_for_select(Brand.where(category_id: @category_id).collect{ |b| [b.name , b.id]}, :selected =>  form.object.brand_id)%>
+=======
+    <div class="row">
+      <div class="group" >
+         <%= form.label :'Thông tin xe' %>
+        <div class="row">
+          <div class="col-2">
+          <%= form.label :'loại xe'%>
+          <%=  select_tag  :post_category, options_for_select(Category.all.collect{ |c| [c.name , c.id]}), :onchange => 'categoryOption()'%>
+          </div>
+          <div class="col-2">
+          <%= form.label :'hãng xe' %>
+          <%= form.select :brand_id, options_for_select(Brand.where(category_id: District.first.id).collect{ |b| [b.name , b.id]})%>
+>>>>>>> upstream/master
+           </div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="row">
+<<<<<<< HEAD
+           <div class="group" style="margin-bottom: 0px;"><%= form.label :'Tiêu đề' %>(<span>*</span>)</div>
+          <%= form.text_field :title,class:"col-10"%>
+=======
+          <%= form.text_field :title,class:"col-6",placeholder:'tiêu đề'%>
+>>>>>>> upstream/master
+        </div>
+      </div>
+      <div class="group">
+        <div class="row">
+<<<<<<< HEAD
+           <div class="group" style="margin-bottom: 0px;"><%= form.label :'Giá thuê' %>(<span>*</span>)</div>
+          <%= form.text_field :price,class:"col-3"%>
+        </div>
+      </div>
+      <div class="group">
+        <div class="group"><%= form.label :'Địa chỉ' %>(<span>*</span>)</div>
+        <div class="row">
+          <%= select_tag :post_province, options_for_select(Province.all.collect{ |pv| [pv.name , pv.id]}, :selected => @province_id), :onchange => 'provinceOption()', :class =>  "col-3"  %>
+          <%= form.select :district_id, options_for_select(District.where(province_id: @province_id).collect{ |d| [d.name , d.id]}, :selected => form.object.district_id),{}, :class =>  "col-3"  %>
+          <%= form.text_field :address,class:"col-4",placeholder:'địa chỉ cụ thể'%>
+        </div>
+      </div>
+      <div class="group">
+          <div class="group"><%= form.label :'Mô tả chi tiết' %>(<span>*</span>)</div>
+        <div class="row">
+          <%= form.text_area :descript, id: 'editor' %>
+=======
+          <%= form.text_field :price,class:"col-3",placeholder:'giá'  %>
+        </div>
+      </div>
+      <div class="group">
+        <%= form.label :'Địa chỉ' %>
+        <div class="row">
+          <%= select_tag :post_province, options_for_select(Province.all.collect{ |pv| [pv.name , pv.id]}), :onchange => 'provinceOption()', :class =>  "col-2"  %>
+          <%= form.select :district_id, options_for_select(District.where(province_id: Province.first.id).collect{ |d| [d.name , d.id]}),{}, :class =>  "col-2"  %>
+          <%= form.text_field :address,class:"col-3",placeholder:'địa chỉ cụ thể'%>
+        </div>
+      </div>
+      <div class="group">
+         <%= form.label :'Mô tả chi tiết' %>
+        <div class="row">
+          <textarea name="post[descript]" id="editor"></textarea> 
+>>>>>>> upstream/master
+        </div>
+      </div>
+      <div class="group">
+        <%= form.label :'Ảnh', :for => 'post_image' %>
+<<<<<<< HEAD
+        <label  for="post_image" style="width: 100%; cursor: pointer;">
+            <%= form.file_field :image , :class => 'col-6' %>
+          <% if params[:id] %>
+            <%= image_tag url_for(post.image), style: "max-width: 300px; max-height: 300px;", id:"img"%>
+          <% end %>
+            <img src="" id="img" style="display: none; max-width: 300px; max-height: 300px;">  
+=======
+        <label for="backID" style="width: 100%">
+            <%= form.file_field :image , :class => 'col-6' %>
+            <img src="" id="img" style="display: none;">
+>>>>>>> upstream/master
+            <label for="post_image" id="limg"></label>
+        </label>
+        <br>
+      </div>
+<<<<<<< HEAD
+      <p class="col-12">phí tin đăng: <span style="color: #40a691; font-weight: bold;">15 000 vnd</span></p>
+      <div class="group center">
+         <%= form.submit 'Đăng tin',class: 'btn btn-success' %>
+      </div>
+    </div>
+<% end %>
+</div>
+=======
+      <p class="col-12">phí tin đăng: 15 000 vnd</p>
+      <%= form.submit 'Đăng tin',class: 'btn btn-success' %>
+    </div>
+<% end %>
+>>>>>>> upstream/master
+<script type="text/javascript">
+   $("#post_image").change(function(){
+            // var fullPath = $("#frontID").get(0).files;
+            // var length = parseInt(fullPath.length);
+            // if (length > 3) {alert("hệ thống chỉ cho phép up tối đa 3 file. hệ thống sẽ ghi nhận 3 file đầu của bạn"); length=3}
+            // var string = '';
+            // for(var i = 0;i<length;i++){
+            //     var buf = event.target.files[i];
+            //     const blob = new Blob( [buf] );
+            //     string += "<img src='"+URL.createObjectURL(blob)+"'>"+"<br><label>"+fullPath.item(i).name+"</label>";
+            // }
+            // $("#frntid").html(string);
+            var fullPath = document.getElementById('post_image').value;
+            if (fullPath) {
+                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+                var filename = fullPath.substring(startIndex);
+                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                    filename = filename.substring(1);
+                }
+                $("#img").attr("src",URL.createObjectURL(event.target.files[0]));
+                $("#post_image").css("display","none");
+                $("#img").css("display","block");
+                $("#limg").text(filename);
+            }   
+        });
+</script>
+<script type="text/javascript">
+  function categoryOption(type) {
+    var id = $('#post_category').val();
+    $.get("/posts/ajax/category_selection", {id:id}, function(result){
+    });
+  }
+  function provinceOption(type) {
+    var id = $('#post_province').val();
+    $.get("/posts/ajax/province_selection", {id:id}, function(result){
+    });
+  }
+</script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+

@@ -1,0 +1,92 @@
+<style type="text/css">
+	.list-item tr{
+		margin-bottom: 10px;
+		border-bottom: 1px solid #DFE3ED;
+	}
+	.list-item td{
+		padding: 5px !important;
+		border: none !important;
+	}
+	.list-item th{
+		padding: 5px !important;
+		border: none !important;
+	}
+	td p{
+		margin: 0 0 5px 35px;
+		text-align: left;
+	}
+	.center{
+		padding-top: 30px;
+		margin: auto;
+		width: 60%;
+	}
+	.status{
+		border: 1px solid black;
+		margin-top: 5px;
+		cursor: pointer;
+	}
+	.description{
+		width: 300px;
+		height: 21px;
+	    overflow: hidden;
+	    white-space: nowrap; 
+	    text-overflow: ellipsis;
+	    margin-top: 5px;
+	}
+	.item{
+		margin-right: 45px;
+		padding: .6rem 0;
+		color: #9B9B9B;
+		cursor: pointer;
+	}
+	.item:hover{
+		color: #212121;
+	}
+	.active{
+		color: #212121;
+		border-bottom: 3px solid #40a691;
+	}
+	.active > span{
+		color: #40a691;
+	}
+	.nav{
+		border-bottom: 1px solid #F2F5F8;
+		margin-bottom: 20px;
+	}
+	.wrapp{
+		font-size: 14px;
+	}
+	.column-title{
+		text-align: center;
+		background-color: #f2f5f8;
+
+	}
+</style>
+<div class="box-area">
+	<h3 class="title">lịch sử giao dịch</h3>
+</div>
+<div id="managerental">
+	<% if @bill_rent.empty? %>
+    <p style='margin-top:20px;'>bạn chưa thực hiện giao dịch nào.<p>
+	<% else -%>
+    <div class="row">
+	    <table class="col-12 list-item" style="text-align: center;">	
+	    	<tr class="column-title">
+	    		<th>id</th>
+	    		<th>thông tin giao dịch</th>
+	    		<th>tổng tiền</th>
+	    		<th>thời gian thuê</th>
+	    	</tr>
+		    <% @bill_rent.each do |bill| %>
+	    	<tr>
+	    		<td><%=bill.id%></td>
+	    		<td><p><%=bill.title%></p><p><%=bill.price%>vnđ</p></td>
+	    		<td><%=bill.amount%></td>
+	    		<td><%=bill.rent_date%> - <%=bill.return_date%></td>
+	    	</tr>
+	    	<% end -%>
+	    </table>
+    </div>
+
+	<% end -%>
+ </div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Car</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'bootstrap'%>
+    <%= stylesheet_link_tag 'style'%>
+<<<<<<< HEAD
+=======
+    <%= stylesheet_link_tag 'style1'%>
+>>>>>>> upstream/master
+    <%= javascript_pack_tag 'ckeditor' %>
+    
+  </head>
+  <body>
+    <%=render "layouts/header"%>
+    <section class="content" style="min-height: auto;">
+      <% flash.each do |key, value| %>
+        <div class="row">
+          <div class="alert alert-<%= key %>">
+            <%= value %>
+          </div>
+        </div>
+      <% end %>
+    </section>
+<<<<<<< HEAD
+=======
+    <script type="text/javascript">
+      
+    </script>
+
+>>>>>>> upstream/master
+    <%= yield %>
+    <%=render "layouts/footer"%>
+  </body>
+</html>

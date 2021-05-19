@@ -1,0 +1,60 @@
+<script type="text/javascript">
+  function checkRegis(){
+    var x = document.forms["regis"]['name'].value;
+    var y1 = document.forms["regis"]['password'].value;
+    var y2 = document.forms["regis"]['password_confirmation'].value;
+    var z = document.forms["regis"]['account'].value;
+    if (x == "") {
+      alert("Bạn chưa nhập tên hiển thị");
+      return false;
+    }
+    else if (z == "") {
+      alert("Bạn chưa nhập tên tài khoản");
+      return false;
+    }
+    else if (y1 == "") {
+      alert("Bạn chưa nhập tên tài khoản");
+      return false;
+    }
+    else if (y1 != y2) {
+      alert("Mật khẩu nhập lại không khớp");
+      return false;
+    }
+  }
+  $("#frontID").change(function(){
+            // var fullPath = $("#frontID").get(0).files;
+            // var length = parseInt(fullPath.length);
+            // if (length > 3) {alert("hệ thống chỉ cho phép up tối đa 3 file. hệ thống sẽ ghi nhận 3 file đầu của bạn"); length=3}
+            // var string = '';
+            // for(var i = 0;i<length;i++){
+            //     var buf = event.target.files[i];
+            //     const blob = new Blob( [buf] );
+            //     string += "<img src='"+URL.createObjectURL(blob)+"'>"+"<br><label>"+fullPath.item(i).name+"</label>";
+            // }
+            // $("#frntid").html(string);
+            var fullPath = document.getElementById('frontID').value;
+            if (fullPath) {
+              var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+              var filename = fullPath.substring(startIndex);
+              if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                filename = filename.substring(1);
+              }
+              $("#ifid").attr("src",URL.createObjectURL(event.target.files[0]));
+              $("#ifid").css("display","block");
+              $("#fid").text(filename);
+            }   
+          });
+  $("#backID").change(function(){
+    var fullPath = document.getElementById('backID').value;
+    if (fullPath) {
+      var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+      var filename = fullPath.substring(startIndex);
+      if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        filename = filename.substring(1);
+      }
+      $("#ibid").attr("src",URL.createObjectURL(event.target.files[0]));
+      $("#ibid").css("display","block");
+      $("#bid").text(filename);
+    }   
+  });
+</script>
